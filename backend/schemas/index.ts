@@ -1,3 +1,3 @@
-import beer from './beer'
+import home from './home'
 
-export const schemaTypes = [beer]
+export const schemaTypes = [home]

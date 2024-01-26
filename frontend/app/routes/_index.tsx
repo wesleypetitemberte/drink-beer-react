@@ -1,29 +1,14 @@
-import React from 'react';
-import createClient from '../../src/lib/sanityClient';
+//Components
+import Beers from "../../src/components/Beers/Beers";
 
 export default function Index() {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    createClient
-      .fetch('*[_type == "bier"]{name, description, image}')
-      .then((result) => setData(result))
-      .catch((error) => console.error('Erro ao buscar dados do Sanity:', error));
-  }, []);
-
   return (
-    <div>
-      <h1>Meu Projeto RemixJS e SanityJS</h1>
+    <main>
+      <section className="bg-black">
+        <h1 className="text-8xl font-bold text-white text-center py-10">DRINK BEER</h1>
+      </section>
 
-      {data && (
-        <ul>
-          {data.map((item, index) => (
-            <li key={index}>
-              {item.name}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+      <Beers/>
+    </main>
   );
 }
