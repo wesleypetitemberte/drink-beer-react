@@ -1,0 +1,25 @@
+.beers-header .block-image img {
+    position: absolute;
+    top: -265px;
+    left: 30%;
+}
+
+.beers-items li:nth-child(even) {
+    background-color: #ffc328;
+}
+
+.beers-items li:hover {
+    transition: all ease-in-out 0.2s
+}
+
+.beers-items li:hover a h4 {
+    transition: all ease-in-out 0.2s
+}
+
+.beers-items li:hover {
+    background-color: #fff;
+}
+
+.beers-items li:hover a h4 {
+    color: #000;
+}

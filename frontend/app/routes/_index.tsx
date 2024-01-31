@@ -1,6 +1,6 @@
 //Components
-import Beers from "../../src/components/Beers";
-import Experience from "../../src/components/Experience";
+import Beers from "../../src/components/Beers/Beers";
+import Experience from "../../src/components/Experience/Experience";
 
 export default function Index() {
   return (

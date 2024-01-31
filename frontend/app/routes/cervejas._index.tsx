@@ -1,5 +1,5 @@
 //Components
-import Beers from "../../src/components/Beers";
+import Beers from "../../src/components/Beers/Beers";
 
 export default function Index() {
     return (

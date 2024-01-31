@@ -1,5 +1,5 @@
 import React from 'react';
-import sanity, { sanitizeImage } from '../../src/lib/sanityClient.ts';
+import sanity, { sanitizeImage } from '../../lib/sanityClient.ts';
 
 export default function Beers() {
     const [data, setData] = React.useState(null);

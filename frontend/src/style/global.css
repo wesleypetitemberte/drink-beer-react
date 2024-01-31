@@ -21,3 +21,14 @@ body {
     background-color: #ffffff;
     overflow-x: clip;
 }
+
+.form-select {
+    display: block;
+    padding: 1rem 1.75rem;
+    background-color: #fff;
+    background-clip: padding-box;
+    appearance: none;
+    background-image: url(src/imgs/seta.svg)!important;
+    background-position: 98% center!important;
+    background-repeat: no-repeat!important;
+}
