@@ -1,14 +1,16 @@
 //Components
-import Beers from "../../src/components/Beers/Beers";
+import Beers from "../../src/components/Beers";
+import Experience from "../../src/components/Experience";
 
 export default function Index() {
   return (
-    <main>
+    <main className="home-page">
       <section className="bg-black">
         <h1 className="text-8xl font-bold text-white text-center py-10">DRINK BEER</h1>
       </section>
 
       <Beers/>
+      <Experience/>
     </main>
   );
 }

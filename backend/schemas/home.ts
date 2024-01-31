@@ -36,32 +36,11 @@ export default {
                     type: 'array',
                     title: 'Cervejas',
                     of: [
-                        { 
-                            type: 'object',
-                            name: 'titleBlock',
-                            title: 'Cerveja',
-                            fields: [
-                                {
-                                    name: 'title',
-                                    type: 'string',
-                                    title: 'Título'
-                                },
-                                {
-                                    name: 'description',
-                                    type: 'text',
-                                    title: 'Descrição'
-                                },
-                                {
-                                    name: 'image',
-                                    type: 'image',
-                                    title: 'Imagem',
-                                    options: {
-                                        hotspot: true
-                                    }
-                                },
-                            ]
-                        }
-                    ]
+                        {
+                            type: 'reference',
+                            to: [{ type: 'beerPage' }],
+                        },
+                    ],
                 }
             ]
         },
