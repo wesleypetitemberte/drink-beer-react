@@ -1,14 +1,16 @@
-export default {
+import {defineField, defineType} from 'sanity'
+
+export const homeType = defineType({
     name: 'home',
-    type: 'document',
     title: 'Home',
+    type: 'document',
     fields: [
-        {
+        defineField({
             name: 'titulo',
             type: 'string',
             title: 'Título da Página'
-        },
-        { 
+        }),
+        defineField({
             name: 'beer',
             type: 'object',
             title: 'Módulo de Cervejas',
@@ -43,8 +45,8 @@ export default {
                     ],
                 }
             ]
-        },
-        {
+        }),
+        defineField({
             name: 'experience',
             type: 'object',
             title: 'Módulo de Experience',
@@ -84,6 +86,6 @@ export default {
                     ]
                 }
             ]
-        }
+        })
     ]
-}
+})

@@ -1,4 +1,5 @@
-import home from './home'
-import beers from './beers'
+import {homeType} from './home'
+import {beersType} from './beers'
+import {settingsType} from './settings'
 
-export const schemaTypes = [home, beers]
+export const schemaTypes = [homeType, beersType, settingsType]
