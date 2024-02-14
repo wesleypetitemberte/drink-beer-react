@@ -1,24 +1,22 @@
 import type { StructureResolver } from 'sanity/structure';
-import { DocumentsIcon, HomeIcon, CubeIcon, CogIcon } from '@sanity/icons';
+import { HomeIcon, CubeIcon, CogIcon } from '@sanity/icons';
 
 export const structure: StructureResolver = (S) =>
 S.list()
 .id('root')
-.title('Conteúdo')
+.title('Content')
 .items([
     S.listItem()
-    .title('Páginas')
-    .id('pages')
-    .icon(DocumentsIcon)
-    .child(
-        S.list()
-        .title('Páginas')
-        .items([
-            S.documentTypeListItem('home').title('Home').icon(HomeIcon)
-        ])
-    ),
+    .title('Home')
+    .id('homeType')
+    .icon(HomeIcon)
+    .child(S.document().schemaType('home').documentId('homeType')),
     S.divider(),
     S.documentTypeListItem('beerPage').title('Produtos').icon(CubeIcon),
     S.divider(),
-    S.documentTypeListItem('settings').title('Settings').icon(CogIcon)
+    S.listItem()
+    .title('Settings')
+    .id('settingsType')
+    .icon(CogIcon)
+    .child(S.document().schemaType('settings').documentId('settingsType'))
 ]);
