@@ -1,19 +1,23 @@
-import React from 'react';
-import sanity from '../../src/lib/sanityClient.ts';
+import {useState, useEffect} from "react"
+import { client } from "../../src/lib/sanityClient"
 
 //Components
-import Beers from "../../src/components/Beers/Beers";
-import Experience from "../../src/components/Experience/Experience";
+import Beers from "../../src/components/Beers/Beers"
+import Experience from "../../src/components/Experience/Experience"
+
+interface IData {
+  titulo:string
+}
 
 export default function Index() {
-  const [data, setData] = React.useState(null);
+  const [data, setData] = useState<IData>()
 
-  React.useEffect(() => {
-    sanity
-    .fetch(`*[_type == "settings"][0]`)
+  useEffect(() => {
+    client
+    .fetch(`*[_type == "settings"][0]{titulo}`)
     .then((result) => setData(result))
-    .catch((error) => console.error('Erro ao buscar dados do Sanity:', error));
-  }, []);
+    .catch((error) => console.error('Erro ao buscar dados do Sanity:', error))
+  }, [])
 
   if (data) {
     return (
@@ -25,8 +29,8 @@ export default function Index() {
         <Beers/>
         <Experience/>
       </main>
-    );
+    )
   } else {
-    return null;
+    return null
   }
 }

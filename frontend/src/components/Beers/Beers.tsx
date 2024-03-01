@@ -1,17 +1,21 @@
-import React from 'react';
-import sanity, { sanitizeImage } from '../../lib/sanityClient.ts';
-import { Link } from "@remix-run/react";
+import {useState, useEffect, ChangeEvent} from "react"
+import { client, sanitizeImage } from "../../lib/sanityClient"
+import { Link } from "@remix-run/react"
+
+interface IData {
+    beer:any
+}
 
 export default function Beers() {
-    const [data, setData] = React.useState(null);
-    const [selectBeer, setSelectBeer] = React.useState('all');
+    const [data, setData] = useState<IData>()
+    const [selectBeer, setSelectBeer] = useState('all')
 
-    const handleSelectChange = (event) => {
-        setSelectBeer(event.target.value);
-    };
+    const handleSelectChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setSelectBeer(e.target.value)
+    }
 
-    React.useEffect(() => {
-        sanity
+    useEffect(() => {
+        client
         .fetch(`*[_type == "home"]{
             beer{
                 name,
@@ -26,8 +30,8 @@ export default function Beers() {
             }
         }[0]`)
         .then((result) => setData(result))
-        .catch((error) => console.error('Erro ao buscar dados do Sanity:', error));
-    }, []);
+        .catch((error) => console.error('Erro ao buscar dados do Sanity:', error))
+    }, [])
 
     if (data) {
         return (
@@ -47,16 +51,16 @@ export default function Beers() {
                     <div className="beers-content">
                         <div className="beers-filter bg-black py-12 px-28">
                             <h3 className="text-2xl mb-7 font-semibold text-yellow-500">CONHEÇA NOSSAS BEBIDAS</h3>
-                            <select name="beers" id="beersSelect" value={selectBeer} onChange={handleSelectChange} className="w-6/12 cursor-pointer form-select">
+                            <select name="beers" id="beersSelect" value={selectBeer} onChange={(e:ChangeEvent<HTMLInputElement>) => handleSelectChange(e)} className="w-6/12 cursor-pointer form-select">
                                 <option value="all">Mostrar todas</option>
-                                {data.beer.beers.map((i, index) => (
+                                {data.beer.beers.map((i:any, index:number) => (
                                     <option key={index} value={i.title}>{i.title}</option>
                                 ))}
                             </select>
                         </div>
 
                         <ul className="beers-items grid grid-cols-3">
-                            {data.beer.beers.map((i, index) => (
+                            {data.beer.beers.map((i:any, index:number) => (
                                 (selectBeer == i.title || selectBeer == 'all') && 
                                 <li key={index} className="bg-yellow-500 pt-4 pb-14">
                                     <Link className="flex flex-col justify-center items-center" to={"/cervejas/" + i.slug.current}>
@@ -69,8 +73,8 @@ export default function Beers() {
                     </div>
                 )}
             </section>
-        );
+        )
     } else {
-        return null;
+        return null
     }
 }

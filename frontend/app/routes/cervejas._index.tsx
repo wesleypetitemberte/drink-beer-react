@@ -1,5 +1,5 @@
 //Components
-import Beers from "../../src/components/Beers/Beers";
+import Beers from "../../src/components/Beers/Beers"
 
 export default function Index() {
     return (
@@ -8,5 +8,5 @@ export default function Index() {
                 <Beers/>
             </section>
         </main>
-    );
+    )
 }

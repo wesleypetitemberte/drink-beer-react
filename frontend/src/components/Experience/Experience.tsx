@@ -1,15 +1,19 @@
-import React from 'react';
-import sanity, { sanitizeImage } from '../../lib/sanityClient.ts';
+import {useState, useEffect} from "react"
+import { client, sanitizeImage } from "../../lib/sanityClient"
+
+interface IData {
+    experience:any
+}
 
 export default function Beers() {
-    const [data, setData] = React.useState(null);
+    const [data, setData] = useState<IData>()
 
-    React.useEffect(() => {
-        sanity
+    useEffect(() => {
+        client
         .fetch(`*[_type == "home"][0]{experience}`)
         .then((result) => setData(result))
-        .catch((error) => console.error('Erro ao buscar dados do Sanity:', error));
-    }, []);
+        .catch((error) => console.error('Erro ao buscar dados do Sanity:', error))
+    }, [])
 
     if (data) {
         return (
@@ -21,19 +25,19 @@ export default function Beers() {
                     </div>
 
                     {data.experience.blocks && (
-                        <div className="blocks flex">
-                            {data.experience.blocks.map((i, index) => (
+                        <div className="blocks flex justify-between lg:flex-row flex-col">
+                            {data.experience.blocks.map((i:any, index:number) => (
                                 <div key={index} className="block relative">
                                     <img className="object-cover" src={sanitizeImage(i.image.asset._ref)} alt="Imagem" />
-                                    <h4 className="text-7xl w-2/3 font-bold text-white z-10 absolute bottom-16 left-10">{i.title}</h4>
+                                    <h4 className="text-6xl w-2/3 font-bold text-white z-10 absolute bottom-32 left-10">{i.title}</h4>
                                 </div>
                             ))}
                         </div>
                     )}
                 </div>
             </section>
-        );
+        )
     } else {
-        return null;
+        return null
     }
 }
